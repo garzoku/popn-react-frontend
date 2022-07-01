@@ -1,0 +1,25 @@
+.centered {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.findActivities {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 64px;
+  border-radius: 6px;
+  padding: 3px;
+}
+
+.listings {
+  text-align: center;
+  max-width: 1280px;
+}
+
+.listings > li + li {
+  margin: 0;
+  text-align: left;
+  margin-top: 6px;
+}

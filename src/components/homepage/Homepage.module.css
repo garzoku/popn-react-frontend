@@ -1,0 +1,107 @@
+.homepageText {
+  margin-top: 96px;
+  font-style: italic;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  color: hsl(211, 100%, 13%);
+}
+
+.homepageText p {
+  text-align: center;
+  width: 75%;
+  background-color: hsl(211, 100%, 97%);
+  border-radius: 6px;
+  padding: 12px;
+  line-height: 25px;
+}
+
+.homepageMain {
+  margin-left: auto;
+  margin-right: auto;
+  width: 75%;
+  margin-top: 96px;
+  display: flex;
+  justify-content: space-evenly;
+  background-color: hsl(211, 100%, 97%);
+  border-radius: 6px;
+  padding: 36px 12px 36px 12px;
+}
+
+.heroContainer {
+  display: flex;
+  width: 700px;
+  align-items: center;
+  position: relative;
+  border-radius: 6px;
+  padding: 4px;
+  background-color: hsl(211, 50%, 85%);
+}
+
+.heroContent {
+  box-sizing: border-box;
+  margin-left: 6px;
+  border-radius: 6px;
+  padding: 6px;
+  width: 100%;
+  background-color: hsl(211, 100%, 97%);
+  height: 100%;
+  line-height: 25px;
+}
+
+.heroTitle {
+  margin-top: 4px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #333333;
+}
+
+.heroContent ul {
+  display: flex;
+}
+
+.heroTitle ul li + li {
+  margin-left: 12px;
+}
+
+.heroTitle h2 {
+  font-size: 26px;
+  font-weight: 500;
+  margin-bottom: 15px;
+}
+
+.heroDescription {
+  margin-top: 16px;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.heroImage {
+  width: 400px;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.popnLogoLarge {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 400px;
+}
+.popnBackground {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 150px;
+  width: 250px;
+  background-color: hsl(0, 79%, 52%);
+  border-radius: 6px;
+}
+
+.popnLogoText {
+  color: #ffffff;
+  font-size: 72px;
+  font-weight: 700;
+}

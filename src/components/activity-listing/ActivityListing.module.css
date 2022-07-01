@@ -1,0 +1,65 @@
+.listing {
+  display: flex;
+  width: 660px;
+  height: 175px;
+  position: relative;
+  border-radius: 6px;
+  background-color: hsl(211, 100%, 97%);
+}
+
+.listingContent {
+  margin: 10px;
+}
+
+.listingTitle {
+  margin-top: 4px;
+  padding-bottom: 5px;
+}
+
+.listingTitle li + li {
+  margin-left: 8px;
+}
+
+.listingTitle h2 {
+  font-size: 24px;
+  font-weight: 500;
+  margin-bottom: 15px;
+  color: hsl(211, 100%, 9%);
+}
+
+.listingMetadata {
+  border-top: 1px solid hsl(211, 10%, 73%);
+  margin-bottom: 14px;
+  padding-top: 8px;
+  font-size: 15px;
+  position: absolute;
+  bottom: 0;
+  text-align: left;
+  color: hsl(211, 100%, 1%);
+  line-height: 20px;
+}
+
+.location {
+  margin-right: 16px;
+  margin-bottom: 14px;
+  padding-top: 8px;
+  font-size: 13px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  text-align: right;
+  color: hsl(211, 25%, 35%);
+  line-height: 20px;
+}
+
+.listingMetadata span {
+  color: hsl(211, 25%, 35%);
+}
+
+.listingImage {
+  margin: 12px;
+  width: 250px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 6px;
+}

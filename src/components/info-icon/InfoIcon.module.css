@@ -1,0 +1,12 @@
+.infoIcons {
+  display: flex;
+}
+.infoIcons > li + li {
+  margin-left: 4px;
+}
+
+.infoIcons > li > span {
+  padding: 6px;
+  background-color: hsl(0, 99%, 86%);
+  border-radius: 6px;
+}

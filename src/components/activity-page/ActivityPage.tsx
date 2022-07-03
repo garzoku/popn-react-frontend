@@ -3,8 +3,8 @@ import { useParams } from "react-router-dom";
 import styles from "./ActivityPage.module.css";
 import InfoIcon from "../info-icon/InfoIcon";
 import { Activity } from "../../Activity";
-import PrimaryButton from "../buttons/PrimaryButton";
 import ButtonToExternalSite from "../buttons/ButtonToExternalSite";
+import { Link } from "react-router-dom";
 
 type ActivityList = {
   activities: Activity[];
@@ -83,7 +83,11 @@ const ActivityPage = ({ activities }: ActivityList) => {
               </div>
             </div>
             <div className={styles.grid3}>
-              <div className={styles.activityButton}></div>
+              <div className={styles.activityButton}>
+                <Link to={`/edit-activity/${activity!.id}`} className={styles.button}>
+                  Edit
+                </Link>
+              </div>
             </div>
             <div className={styles.grid4}>
               <div className={styles.activityDescription}>

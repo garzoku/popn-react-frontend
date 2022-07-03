@@ -19,9 +19,9 @@ const Header = () => {
             </Link>
           </li>
           <li className={HeaderStyles.action}>
-            <a href="add-activity" className={HeaderStyles.button}>
+            <Link to="add-activity" className={HeaderStyles.button}>
               <span className="material-symbols-outlined">add</span>Add Activities
-            </a>
+            </Link>
           </li>
         </ul>
         <div className={HeaderStyles.favicon}>

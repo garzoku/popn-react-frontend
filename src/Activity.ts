@@ -1,7 +1,7 @@
 import { Badge } from "./Badge";
 
 export class Activity {
-  id!: number;
+  id?: number;
   imageUrl!: string;
   name!: string;
   websiteUrl!: string;

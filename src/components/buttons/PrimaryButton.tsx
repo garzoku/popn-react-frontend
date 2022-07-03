@@ -1,5 +1,5 @@
 import React from "react";
-import style from "./PrimaryButton.module.css";
+import style from "./OrangeButton.module.css";
 
 type data = {
   text: String;

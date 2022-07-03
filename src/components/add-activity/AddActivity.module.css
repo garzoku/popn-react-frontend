@@ -1,0 +1,111 @@
+.addActivityBackground {
+  display: flex;
+  justify-content: center;
+}
+
+form {
+  line-height: 1.5em;
+  display: flex;
+  flex-direction: column;
+  height: 470px;
+}
+
+.formTop {
+  height: 375px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.formBottom {
+  border-top: 1px solid hsl(211, 10%, 73%);
+  line-height: 2em;
+}
+
+ul {
+  white-space: nowrap;
+}
+
+li {
+  display: inline;
+  margin-right: 12px;
+}
+
+.topLeft {
+  width: 275px;
+}
+
+.topLeft input {
+  width: 90%;
+}
+
+.topRight {
+  width: 275px;
+}
+.topRight input {
+  width: 100%;
+}
+
+form input {
+  margin-bottom: 8px;
+}
+
+form textarea {
+  width: 100%;
+  height: 91px;
+}
+
+.addActivityForm {
+  margin: 64px 0;
+  border-radius: 6px;
+  padding: 24px;
+  background-color: hsl(211, 100%, 97%);
+  border: 3px solid hsl(211, 50%, 85%);
+  position: relative;
+  width: 600px;
+}
+
+.hoursDates {
+  display: flex;
+  justify-content: space-between;
+}
+
+.button {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  margin-bottom: 24px;
+  margin-right: 12px;
+  font-size: 18px;
+  font-weight: 700;
+  text-decoration: none;
+  padding: 4px 12px 4px 12px;
+  border-radius: 6px;
+  border: none;
+  background-color: hsl(0, 74%, 48%);
+  color: hsl(211, 100%, 97%);
+}
+
+.button:hover {
+  background-color: hsl(0, 79%, 40%);
+  cursor: pointer;
+}
+
+.button:active {
+  background-color: hsl(0, 79%, 40%);
+  transform: translateY(4px);
+}
+img {
+  width: 250px;
+  height: 175px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 2px solid hsl(211, 50%, 85%);
+}
+
+fieldset input {
+  margin: 0.4rem;
+}
+
+fieldset {
+  flex-flow: nowrap;
+}

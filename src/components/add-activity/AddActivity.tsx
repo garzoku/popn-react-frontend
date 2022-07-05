@@ -3,6 +3,7 @@ import React from "react";
 import AddActivityStyles from "./AddActivity.module.css";
 import { Activity } from "../../Activity";
 import ActivityService from "../../ActivityService";
+import { Link, Routes, Route, useNavigate } from "react-router-dom";
 
 import { storage } from "../../firebase";
 import { ref, uploadBytes, getStorage, getDownloadURL, StorageReference } from "firebase/storage";
@@ -13,6 +14,7 @@ type ActivityList = {
 };
 
 const AddActivity = (activities: ActivityList) => {
+  let navigate = useNavigate();
   const activityService = new ActivityService();
 
   const [imageRef, setImageRef] = useState<StorageReference>();
@@ -43,22 +45,25 @@ const AddActivity = (activities: ActivityList) => {
   function handleSubmit(event: any) {
     let activity = createActivity();
     uploadImage(activity);
-    activityService.postActivity(activity).then((response) => console.log(response.data));
+    activityService.postActivity(activity).then((response) => {
+      alert(`${activity.name} has been add!`);
+    });
     event.preventDefault();
-    clearActivityState();
+
+    navigate("/find-activities");
   }
 
   // add this function to handleSubmit
   const uploadImage = (activity: Activity) => {
-    uploadBytes(imageRef!, imageUpload!).then((res) => {
-      alert(`${activity.name} has been add!`);
-    });
+    uploadBytes(imageRef!, imageUpload!).then((res) => res);
   };
 
   const onSelectFile = (event: any) => {
-    console.log("event.target.files[0]: " + event.target.files[0].name);
-    setImageUpload(event.target.files[0]);
-    setImageRef(ref(storage, `images/${event.target.files[0].name + uuidv4()}`));
+    if (event.target.value) {
+      console.log("event.target.files[0]: " + event.target.files[0].name);
+      setImageUpload(event.target.files[0]);
+      setImageRef(ref(storage, `images/${event.target.files[0].name + uuidv4()}`));
+    }
   };
 
   function createActivity(): Activity {
@@ -84,7 +89,7 @@ const AddActivity = (activities: ActivityList) => {
     };
   }
   function clearActivityState() {
-    setImageUpload(undefined);
+    setIsImage(false);
     setImageUrl("");
     setName("");
     setWebsiteUrl("");
@@ -126,19 +131,18 @@ const AddActivity = (activities: ActivityList) => {
               <div className={AddActivityStyles.topLeft}>
                 <label htmlFor="imageUrl">Upload Image</label>
                 <br />
-                {/*<input type="text" name="imageUrl" id="imageUrl" value={imageUrl} onChange={onSelectFile} />*/}
-                <input type="file" name="imageUrl" id="imageUrl" onChange={onSelectFile} />
+                <input required type="file" name="imageUrl" id="imageUrl" onChange={onSelectFile} accept="image/png, image/gif, image/jpeg" />
                 <br />
                 {!isImage ? <img className={AddActivityStyles.imagePreview} src={require(`../assets/imagepreview.png`)} alt="preview" /> : <img className={AddActivityStyles.imagePreview} src={URL.createObjectURL(imageUpload!)} alt="preview" />}
                 <br />
 
                 <label htmlFor="name">Activity Name</label>
                 <br />
-                <input type="text" id="name" name="name" value={name} onChange={(e) => setName(e.target.value)} />
+                <input required type="text" id="name" name="name" value={name} onChange={(e) => setName(e.target.value)} />
                 <br />
                 <label htmlFor="city">City</label>
                 <br />
-                <input type="text" id="city" name="city" value={city} onChange={(e) => setCity(e.target.value)} />
+                <input required type="text" id="city" name="city" value={city} onChange={(e) => setCity(e.target.value)} />
                 <br />
               </div>
               <div className={AddActivityStyles.topRight}>
@@ -172,11 +176,11 @@ const AddActivity = (activities: ActivityList) => {
                 </div>
                 <label htmlFor="description">Description</label>
                 <br />
-                <textarea id="description" name="description" value={description} onChange={(e) => setDescription(e.target.value)}></textarea>
+                <textarea required id="description" name="description" value={description} onChange={(e) => setDescription(e.target.value)}></textarea>
                 <br />
                 <label htmlFor="state">State</label>
                 <br />
-                <input type="text" id="state" name="state" value={state} onChange={(e) => setState(e.target.value)} />
+                <input required type="text" id="state" name="state" value={state} onChange={(e) => setState(e.target.value)} />
                 <br />
               </div>
             </div>

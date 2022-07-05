@@ -7,7 +7,7 @@ import AddActivity from "./components/add-activity/AddActivity";
 import ActivityService from "./ActivityService";
 import EditActivity from "./components/edit-activity/EditActivity";
 
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 function App() {
@@ -22,7 +22,6 @@ function App() {
       setActivities(activitiesFromServer);
     };
     getActivities();
-    console.log("refreshed");
     // execute useEffect every time router location changes.
   }, [location]);
 

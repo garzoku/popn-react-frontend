@@ -18,7 +18,7 @@ const ActivityListing = ({ activity }: ActivityData) => {
   const storage = getStorage();
   getDownloadURL(ref(storage, `images/${activity.imageUrl}`)).then((url) => {
     const img = document.getElementById(activity.id!.toString());
-    img!.setAttribute("src", url);
+    img?.setAttribute("src", url);
   });
 
   function dateFormatter(date: string) {

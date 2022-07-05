@@ -1,9 +1,11 @@
 .infoIcons {
   display: flex;
+  flex-wrap: wrap;
 }
-.infoIcons > li + li {
+.infoIcons > li {
   margin: 0;
-  margin-left: 4px;
+  margin-right: 4px;
+  margin-bottom: 4px;
 }
 
 .infoIcons > li > span {

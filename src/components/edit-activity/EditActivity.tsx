@@ -4,6 +4,7 @@ import AddActivityStyles from "./EditActivity.module.css";
 import { Activity } from "../../Activity";
 import ActivityService from "../../ActivityService";
 import { useParams } from "react-router-dom";
+import { textChangeRangeIsUnchanged } from "typescript";
 
 type ActivityList = {
   activities: Activity[];
@@ -51,6 +52,11 @@ const EditActivity = ({ activities }: ActivityList) => {
       setIsImage(false);
       event.preventDefault();
     }
+  };
+
+  const removeActivity = (event: any) => {
+    activityService.deleteActivity(activity!.id!).then((res) => res);
+    event.preventDefault();
   };
 
   function createActivity(): Activity {
@@ -176,7 +182,10 @@ const EditActivity = ({ activities }: ActivityList) => {
                 </li>
               </ul>
             </div>
-            <input className={AddActivityStyles.button} type="submit" readOnly value="Submit" />
+            <div className={AddActivityStyles.buttons}>
+              <input className={AddActivityStyles.button} readOnly value="Delete" onClick={removeActivity} />
+              <input className={AddActivityStyles.button} type="submit" readOnly value="Submit" />
+            </div>
           </form>
         </div>
       </div>

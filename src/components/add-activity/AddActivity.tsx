@@ -46,7 +46,6 @@ const AddActivity = () => {
     let activity = createActivity();
     uploadImage();
     activityService.postActivity(activity).then((response) => {
-      console.log(response);
       alert(`${response.name} has been add!`);
       // navigate(`/activity/${response.id}`);
       navigate(`/find-activities`);

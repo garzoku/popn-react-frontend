@@ -7,7 +7,7 @@
   line-height: 1.5em;
   display: flex;
   flex-direction: column;
-  height: 470px;
+  height: 490px;
   margin: 64px 0;
   border-radius: 6px;
   padding: 24px;
@@ -66,8 +66,16 @@
   justify-content: space-between;
 }
 
-.button {
+.buttons {
+  display: flex;
+  flex-direction: column;
   position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 96px;
+}
+
+.button {
   right: 0;
   bottom: 0;
   margin-bottom: 24px;

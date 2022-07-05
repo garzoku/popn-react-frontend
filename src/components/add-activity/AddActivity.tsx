@@ -1,8 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import React from "react";
 import AddActivityStyles from "./AddActivity.module.css";
 import { Activity } from "../../Activity";
 import ActivityService from "../../ActivityService";
+
+import { storage } from "../../firebase";
+import { ref, uploadBytes, getStorage, getDownloadURL, StorageReference } from "firebase/storage";
+const { v4: uuidv4 } = require("uuid");
 
 type ActivityList = {
   activities: Activity[];
@@ -10,6 +14,8 @@ type ActivityList = {
 
 const AddActivity = (activities: ActivityList) => {
   const activityService = new ActivityService();
+
+  const [imageRef, setImageRef] = useState<StorageReference>();
 
   const [isImage, setIsImage] = useState(false);
   const [imageUrl, setImageUrl] = useState("");
@@ -31,21 +37,28 @@ const AddActivity = (activities: ActivityList) => {
   const [isWifi, setIsWifi] = useState(false);
   const [isRsvp, setIsRsvp] = useState(false);
 
+  // state for upload image
+  const [imageUpload, setImageUpload] = useState<Blob>();
+
   function handleSubmit(event: any) {
     let activity = createActivity();
-    activityService.postActivity(activity).then((response) => response.data);
+    uploadImage(activity);
+    activityService.postActivity(activity).then((response) => console.log(response.data));
+    event.preventDefault();
+    clearActivityState();
   }
 
+  // add this function to handleSubmit
+  const uploadImage = (activity: Activity) => {
+    uploadBytes(imageRef!, imageUpload!).then((res) => {
+      alert(`${activity.name} has been add!`);
+    });
+  };
+
   const onSelectFile = (event: any) => {
-    if (event.target.value) {
-      setImageUrl(event.target.value);
-      setIsImage(true);
-      event.preventDefault();
-    } else {
-      setImageUrl("");
-      setIsImage(false);
-      event.preventDefault();
-    }
+    console.log("event.target.files[0]: " + event.target.files[0].name);
+    setImageUpload(event.target.files[0]);
+    setImageRef(ref(storage, `images/${event.target.files[0].name + uuidv4()}`));
   };
 
   function createActivity(): Activity {
@@ -70,7 +83,40 @@ const AddActivity = (activities: ActivityList) => {
       isRsvp,
     };
   }
+  function clearActivityState() {
+    setImageUpload(undefined);
+    setImageUrl("");
+    setName("");
+    setWebsiteUrl("");
+    setCity("");
+    setState("");
+    setDescription("");
+    setHourBeginning("");
+    setHourEnding("");
+    setDateBeginning("");
+    setDateEnding("");
+    setIsChildFriendly(false);
+    setIsAdmission(false);
+    setIsNoAlcohol(false);
+    setIsPetFriendly(false);
+    setIsParking(false);
+    setIsAccessible(false);
+    setIsWifi(false);
+    setIsRsvp(false);
+  }
+  useEffect(() => {
+    console.log("imageUpload: " + imageUpload);
+    console.log("imageRef: " + imageRef);
+    console.log("imageUrl: " + imageUrl);
 
+    if (imageRef) {
+      setImageUrl(imageRef!.name);
+      setIsImage(true);
+    } else {
+      setImageUrl("");
+      setIsImage(false);
+    }
+  }, [imageUpload, imageRef, isImage, imageUrl]);
   return (
     <>
       <div className={AddActivityStyles.addActivityBackground}>
@@ -80,9 +126,10 @@ const AddActivity = (activities: ActivityList) => {
               <div className={AddActivityStyles.topLeft}>
                 <label htmlFor="imageUrl">Upload Image</label>
                 <br />
-                <input type="text" name="imageUrl" id="imageUrl" value={imageUrl} onChange={onSelectFile} />
+                {/*<input type="text" name="imageUrl" id="imageUrl" value={imageUrl} onChange={onSelectFile} />*/}
+                <input type="file" name="imageUrl" id="imageUrl" onChange={onSelectFile} />
                 <br />
-                {!isImage ? <img className={AddActivityStyles.imagePreview} src={require(`../assets/imagepreview.png`)} alt="preview" /> : <img className={AddActivityStyles.imagePreview} src={imageUrl} alt="preview" />}
+                {!isImage ? <img className={AddActivityStyles.imagePreview} src={require(`../assets/imagepreview.png`)} alt="preview" /> : <img className={AddActivityStyles.imagePreview} src={URL.createObjectURL(imageUpload!)} alt="preview" />}
                 <br />
 
                 <label htmlFor="name">Activity Name</label>

@@ -5,11 +5,22 @@ import InfoIcon from "../info-icon/InfoIcon";
 
 import styles from "./ActivityListing.module.css";
 
+import { useState, useEffect } from "react";
+
+import { storage } from "../../firebase";
+import { ref, uploadBytes, listAll, getDownloadURL, getStorage } from "firebase/storage";
+
 type ActivityData = {
   activity: Activity;
 };
 
 const ActivityListing = ({ activity }: ActivityData) => {
+  const storage = getStorage();
+  getDownloadURL(ref(storage, `images/${activity.imageUrl}`)).then((url) => {
+    const img = document.getElementById(activity.id!.toString());
+    img!.setAttribute("src", url);
+  });
+
   function dateFormatter(date: string) {
     if (!date) {
       return `No Dates`;
@@ -43,7 +54,7 @@ const ActivityListing = ({ activity }: ActivityData) => {
         <div className="selector">
           <figure className={styles.listing}>
             <div>
-              <img className={styles.listingImage} src={activity.imageUrl} alt={activity.name} />
+              <img className={styles.listingImage} src="" id={activity.id?.toString()} alt={activity.name} />
             </div>
             <div className={styles.listingContent}>
               <div className={styles.listingTitle}>

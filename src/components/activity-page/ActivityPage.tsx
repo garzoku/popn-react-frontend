@@ -5,42 +5,24 @@ import InfoIcon from "../info-icon/InfoIcon";
 import { Activity } from "../../Activity";
 import ButtonToExternalSite from "../buttons/ButtonToExternalSite";
 import { Link } from "react-router-dom";
+import { dateFormatter, timeFormatter } from "../../util/PopnUtil";
+
+import { ref, getDownloadURL, getStorage } from "firebase/storage";
 
 type ActivityList = {
   activities: Activity[];
 };
 
 const ActivityPage = ({ activities }: ActivityList) => {
-  function dateFormatter(date: string) {
-    if (!date) {
-      return `No Dates`;
-    }
-    return `${date.slice(5, 7)}/${date.slice(8, date.length)}/${date.slice(0, 4)}`;
-  }
-
-  function timeFormatter(time: string) {
-    if (!time) {
-      return `No Hours`;
-    }
-    let timeFormat = "";
-    if (time.slice(0, 2).includes("00")) {
-      timeFormat = `12:${time.slice(3, 5)} AM`;
-    } else if (time.slice(0, 2).includes("12")) {
-      timeFormat = `12:${time.slice(3, 5)} PM`;
-    } else if (time.slice(0, 1).includes("0")) {
-      timeFormat = `${time.slice(1, 5)} AM`;
-    } else if (+time.slice(0, 2) > 12) {
-      let hour = +time.slice(0, 2) - 12;
-      timeFormat = `${hour}${time.slice(2, 5)} PM`;
-    } else {
-      timeFormat = `${time.slice(0, 5)} AM`;
-    }
-    return timeFormat;
-  }
-
   const { id } = useParams();
 
   const activity = activities.find((activity) => activity.id === +id!);
+
+  const storage = getStorage();
+  getDownloadURL(ref(storage, `images/${activity!.imageUrl}`)).then((url) => {
+    const img = document.getElementById(activity!.id!.toString());
+    img?.setAttribute("src", url);
+  });
 
   return (
     <>
@@ -49,7 +31,7 @@ const ActivityPage = ({ activities }: ActivityList) => {
           <div className={styles.gridContainer}>
             <div className={styles.grid1}>
               <div className={styles.image}>
-                <img src={activity!.imageUrl} alt={activity!.name} />
+                <img className={styles.listingImage} src="" id={activity!.id?.toString()} alt={activity!.name} />
               </div>
             </div>
             <div className={styles.grid2}>

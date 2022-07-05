@@ -13,7 +13,7 @@ type ActivityList = {
   activities: Activity[];
 };
 
-const AddActivity = (activities: ActivityList) => {
+const AddActivity = () => {
   let navigate = useNavigate();
   const activityService = new ActivityService();
 
@@ -44,23 +44,23 @@ const AddActivity = (activities: ActivityList) => {
 
   function handleSubmit(event: any) {
     let activity = createActivity();
-    uploadImage(activity);
+    uploadImage();
     activityService.postActivity(activity).then((response) => {
-      alert(`${activity.name} has been add!`);
+      console.log(response);
+      alert(`${response.name} has been add!`);
+      // navigate(`/activity/${response.id}`);
+      navigate(`/find-activities`);
     });
     event.preventDefault();
-
-    navigate("/find-activities");
   }
 
   // add this function to handleSubmit
-  const uploadImage = (activity: Activity) => {
+  const uploadImage = () => {
     uploadBytes(imageRef!, imageUpload!).then((res) => res);
   };
 
   const onSelectFile = (event: any) => {
     if (event.target.value) {
-      console.log("event.target.files[0]: " + event.target.files[0].name);
       setImageUpload(event.target.files[0]);
       setImageRef(ref(storage, `images/${event.target.files[0].name + uuidv4()}`));
     }
@@ -88,32 +88,7 @@ const AddActivity = (activities: ActivityList) => {
       isRsvp,
     };
   }
-  function clearActivityState() {
-    setIsImage(false);
-    setImageUrl("");
-    setName("");
-    setWebsiteUrl("");
-    setCity("");
-    setState("");
-    setDescription("");
-    setHourBeginning("");
-    setHourEnding("");
-    setDateBeginning("");
-    setDateEnding("");
-    setIsChildFriendly(false);
-    setIsAdmission(false);
-    setIsNoAlcohol(false);
-    setIsPetFriendly(false);
-    setIsParking(false);
-    setIsAccessible(false);
-    setIsWifi(false);
-    setIsRsvp(false);
-  }
   useEffect(() => {
-    console.log("imageUpload: " + imageUpload);
-    console.log("imageRef: " + imageRef);
-    console.log("imageUrl: " + imageUrl);
-
     if (imageRef) {
       setImageUrl(imageRef!.name);
       setIsImage(true);
@@ -129,7 +104,9 @@ const AddActivity = (activities: ActivityList) => {
           <form className={AddActivityStyles.addActivityForm} onSubmit={handleSubmit}>
             <div className={AddActivityStyles.formTop}>
               <div className={AddActivityStyles.topLeft}>
-                <label htmlFor="imageUrl">Upload Image</label>
+                <label htmlFor="imageUrl" className={AddActivityStyles.customFileUpload}>
+                  <span className="material-symbols-outlined">add</span>Select Image
+                </label>
                 <br />
                 <input required type="file" name="imageUrl" id="imageUrl" onChange={onSelectFile} accept="image/png, image/gif, image/jpeg" />
                 <br />

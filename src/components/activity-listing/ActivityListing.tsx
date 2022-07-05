@@ -2,13 +2,11 @@ import React from "react";
 import { Activity } from "../../Activity";
 import { Link } from "react-router-dom";
 import InfoIcon from "../info-icon/InfoIcon";
+import { dateFormatter, timeFormatter } from "../../util/PopnUtil";
 
 import styles from "./ActivityListing.module.css";
 
-import { useState, useEffect } from "react";
-
-import { storage } from "../../firebase";
-import { ref, uploadBytes, listAll, getDownloadURL, getStorage } from "firebase/storage";
+import { ref, getDownloadURL, getStorage } from "firebase/storage";
 
 type ActivityData = {
   activity: Activity;
@@ -20,33 +18,6 @@ const ActivityListing = ({ activity }: ActivityData) => {
     const img = document.getElementById(activity.id!.toString());
     img?.setAttribute("src", url);
   });
-
-  function dateFormatter(date: string) {
-    if (!date) {
-      return `No Dates`;
-    }
-    return `${date.slice(5, 7)}/${date.slice(8, date.length)}/${date.slice(0, 4)}`;
-  }
-
-  function timeFormatter(time: string) {
-    if (!time) {
-      return `No Hours`;
-    }
-    let timeFormat = "";
-    if (time.slice(0, 2).includes("00")) {
-      timeFormat = `12:${time.slice(3, 5)} AM`;
-    } else if (time.slice(0, 2).includes("12")) {
-      timeFormat = `12:${time.slice(3, 5)} PM`;
-    } else if (time.slice(0, 1).includes("0")) {
-      timeFormat = `${time.slice(1, 5)} AM`;
-    } else if (+time.slice(0, 2) > 12) {
-      let hour = +time.slice(0, 2) - 12;
-      timeFormat = `${hour}${time.slice(2, 5)} PM`;
-    } else {
-      timeFormat = `${time.slice(0, 5)} AM`;
-    }
-    return timeFormat;
-  }
 
   return (
     <>

@@ -34,7 +34,7 @@ function App() {
             <Route path="/" element={<Homepage />}></Route>
             <Route path="/find-activities" element={<FindActivities activities={activities} />}></Route>
             <Route path="/activity/:id" element={<ActivityPage activities={activities} />}></Route>
-            <Route path="/add-activity" element={<AddActivity activities={activities} />}></Route>
+            <Route path="/add-activity" element={<AddActivity />}></Route>
             <Route path="/edit-activity/:id" element={<EditActivity activities={activities} />}></Route>
           </Routes>
         </div>

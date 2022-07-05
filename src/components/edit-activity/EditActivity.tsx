@@ -1,23 +1,24 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import React from "react";
 import AddActivityStyles from "./EditActivity.module.css";
 import { Activity } from "../../Activity";
 import ActivityService from "../../ActivityService";
 import { useParams } from "react-router-dom";
-import { textChangeRangeIsUnchanged } from "typescript";
-
+import { useNavigate } from "react-router-dom";
+import { ref, uploadBytes, StorageReference, getDownloadURL, getStorage } from "firebase/storage";
+const { v4: uuidv4 } = require("uuid");
 type ActivityList = {
   activities: Activity[];
 };
 
 const EditActivity = ({ activities }: ActivityList) => {
+  let navigate = useNavigate();
   const activityService = new ActivityService();
 
   const { id } = useParams();
   const activity = activities.find((activity) => activity.id === +id!);
 
-  const [activityId] = useState(+id!);
-  const [isImage, setIsImage] = useState(true);
+  const [isImage, setIsImage] = useState(false);
   const [imageUrl, setImageUrl] = useState(activity!.imageUrl);
   const [name, setName] = useState(activity!.name);
   const [websiteUrl, setWebsiteUrl] = useState(activity!.websiteUrl);
@@ -37,31 +38,52 @@ const EditActivity = ({ activities }: ActivityList) => {
   const [isWifi, setIsWifi] = useState(activity!.isWifi);
   const [isRsvp, setIsRsvp] = useState(activity!.isRsvp);
 
+  const storage = getStorage();
+  // state for upload image
+  const [imageUpload, setImageUpload] = useState<Blob>();
+  const [imageRef, setImageRef] = useState<StorageReference>(ref(storage, `images/${activity!.imageUrl}`));
+
+  if (!isImage) {
+    getDownloadURL(ref(storage, `images/${activity!.imageUrl}`)).then((url) => {
+      const img = document.getElementById(activity!.id!.toString());
+      img?.setAttribute("src", url);
+      setIsImage(true);
+    });
+  }
+
   function handleSubmit(event: any) {
-    let activity = createActivity();
-    activityService.editActivity(activity).then((response) => response.data);
+    let updatedActivity = createActivity();
+    uploadImage();
+    activityService.editActivity(updatedActivity).then((response) => {
+      alert(`${response.name} has been updated!`);
+      // navigate(`/activity/${response.id}`);
+      navigate(`/find-activities`);
+    });
     event.preventDefault();
   }
 
-  const onSelectFile = (event: any) => {
-    if (event.target.value && !isImage) {
-      setImageUrl(event.target.value);
-      setIsImage(true);
-      event.preventDefault();
-    } else if (isImage) {
-      setIsImage(false);
-      event.preventDefault();
-    }
+  // add this function to handleSubmit
+  const uploadImage = () => {
+    uploadBytes(imageRef!, imageUpload!).then((res) => res);
   };
 
-  const removeActivity = (event: any) => {
-    activityService.deleteActivity(activity!.id!).then((res) => res);
-    event.preventDefault();
+  const onSelectFile = (event: any) => {
+    if (event.target.value) {
+      setImageUpload((prevImageUpload) => event.target.files[0]);
+      setImageRef((prevImageRef) => ref(storage, `images/${event.target.files[0].name + uuidv4()}`));
+      const img = document.getElementById(activity!.id!.toString());
+      img?.setAttribute("src", URL.createObjectURL(event.target.files[0]));
+    } else {
+      getDownloadURL(ref(storage, `images/imagepreview.png`)).then((url) => {
+        const img = document.getElementById(activity!.id!.toString());
+        img?.setAttribute("src", url);
+      });
+    }
   };
 
   function createActivity(): Activity {
     return {
-      id: activityId,
+      id: activity!.id,
       imageUrl,
       name,
       websiteUrl,
@@ -82,6 +104,22 @@ const EditActivity = ({ activities }: ActivityList) => {
       isRsvp,
     };
   }
+
+  const removeActivity = (event: any) => {
+    activityService.deleteActivity(activity!.id!).then((res) => res);
+    event.preventDefault();
+  };
+
+  useEffect(() => {
+    if (imageRef) {
+      setImageUrl(imageRef!.name);
+      setIsImage(true);
+    } else {
+      setImageUrl("");
+      setIsImage(false);
+    }
+  }, [imageUpload, imageRef, isImage, imageUrl, activity]);
+
   return (
     <>
       <div className={AddActivityStyles.addActivityBackground}>
@@ -89,11 +127,13 @@ const EditActivity = ({ activities }: ActivityList) => {
           <form className={AddActivityStyles.addActivityForm} onSubmit={handleSubmit}>
             <div className={AddActivityStyles.formTop}>
               <div className={AddActivityStyles.topLeft}>
-                <label htmlFor="imageUrl">Upload Image</label>
+                <label htmlFor="imageUrl" className={AddActivityStyles.customFileUpload}>
+                  <span className="material-symbols-outlined">add</span>Upload Image
+                </label>
                 <br />
-                <input type="text" name="imageUrl" id="imageUrl" value={imageUrl} onChange={onSelectFile} />
+                <input required type="file" name="imageUrl" id="imageUrl" onChange={onSelectFile} accept="image/png, image/gif, image/jpeg" />
                 <br />
-                {!isImage ? <img className={AddActivityStyles.imagePreview} src={require(`../assets/imagepreview.png`)} alt="preview" /> : <img className={AddActivityStyles.imagePreview} src={imageUrl} alt="preview" />}
+                <img className={AddActivityStyles.imagePreview} src="" id={activity!.id?.toString()} alt="preview" />
                 <br />
 
                 <label htmlFor="name">Activity Name</label>

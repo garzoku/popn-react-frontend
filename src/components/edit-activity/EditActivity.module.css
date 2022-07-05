@@ -66,6 +66,36 @@
   justify-content: space-between;
 }
 
+input[type="file"] {
+  display: none;
+}
+.customFileUpload {
+  position: relative;
+  font-size: 18px;
+  font-weight: 700;
+  text-decoration: none;
+  padding: 4px 12px 4px 12px;
+  border-radius: 6px;
+  border: none;
+  background-color: hsl(0, 74%, 48%);
+  color: hsl(211, 100%, 97%);
+  padding-left: 2em;
+}
+.customFileUpload > span {
+  position: absolute;
+  left: 0.4em;
+  margin-top: YYYpx;
+}
+.customFileUpload:hover {
+  background-color: hsl(0, 79%, 40%);
+  cursor: pointer;
+}
+
+.customFileUpload:active {
+  background-color: hsl(0, 79%, 40%);
+  transform: translateY(4px);
+}
+
 .buttons {
   display: flex;
   flex-direction: column;
@@ -76,6 +106,7 @@
 }
 
 .button {
+  text-align: center;
   right: 0;
   bottom: 0;
   margin-bottom: 24px;

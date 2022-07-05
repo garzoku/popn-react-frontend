@@ -3,15 +3,11 @@ import React from "react";
 import AddActivityStyles from "./AddActivity.module.css";
 import { Activity } from "../../Activity";
 import ActivityService from "../../ActivityService";
-import { Link, Routes, Route, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { storage } from "../../firebase";
-import { ref, uploadBytes, getStorage, getDownloadURL, StorageReference } from "firebase/storage";
+import { ref, uploadBytes, StorageReference } from "firebase/storage";
 const { v4: uuidv4 } = require("uuid");
-
-type ActivityList = {
-  activities: Activity[];
-};
 
 const AddActivity = () => {
   let navigate = useNavigate();
@@ -46,14 +42,13 @@ const AddActivity = () => {
     let activity = createActivity();
     uploadImage();
     activityService.postActivity(activity).then((response) => {
-      alert(`${response.name} has been add!`);
+      alert(`${response.name} has been added!`);
       // navigate(`/activity/${response.id}`);
       navigate(`/find-activities`);
     });
     event.preventDefault();
   }
 
-  // add this function to handleSubmit
   const uploadImage = () => {
     uploadBytes(imageRef!, imageUpload!).then((res) => res);
   };
@@ -95,7 +90,7 @@ const AddActivity = () => {
       setImageUrl("");
       setIsImage(false);
     }
-  }, [imageUpload, imageRef, isImage, imageUrl]);
+  }, [imageRef, isImage, imageUrl]);
   return (
     <>
       <div className={AddActivityStyles.addActivityBackground}>

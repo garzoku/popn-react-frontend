@@ -24,7 +24,6 @@ export class ActivityService {
   };
 
   editActivity = async (activity: Activity) => {
-    console.log(activity);
     return axios.put(`https://popndb.herokuapp.com/api/activities/${activity.id}`, activity).then((response) => response.data);
   };
 }

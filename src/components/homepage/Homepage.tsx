@@ -1,11 +1,12 @@
 import React from "react";
-import PrimaryButton from "../buttons/PrimaryButton";
 import style from "./Homepage.module.css";
+import { Anchor } from "react-bootstrap";
 
 const Homepage = () => {
   return (
     <>
       <div className={style.homepageContainer}>
+        <h2>Welcome, {localStorage.getItem("name")}</h2>
         <div className={style.homepageMain}>
           <div className={style.popnLogoLarge}>
             <div className={style.popnBackground}>
@@ -21,7 +22,7 @@ const Homepage = () => {
                 <h2>Fanta Festival</h2>
                 <ul>
                   <li>
-                    <PrimaryButton text={"Check it out!"} />
+                    <Anchor className="btn-primary">Check it Out!</Anchor>
                   </li>
                 </ul>
               </div>

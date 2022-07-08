@@ -1,6 +1,5 @@
 header {
   display: flex;
-  background-color: hsl(211, 100%, 13%);
   padding: 12px;
 }
 
@@ -21,44 +20,25 @@ nav {
   transform: translateX(-50%);
 }
 
-header .favicon {
+header .signIn {
   padding: 8px;
   margin-right: 12px;
   position: absolute;
   right: 0;
 }
 
-.favicon a {
+.signIn button {
   text-decoration: none;
   background-color: hsl(0, 79%, 52%);
   padding: 12px;
   border-radius: 6px;
   color: #ffffff;
-  font-size: 20px;
+  font-size: 12px;
   font-weight: 700;
 }
 
 li + li {
   margin: 0 6px;
-}
-
-.button {
-  text-align: center;
-  font: bold 18px Arial;
-  text-decoration: none;
-  padding: 4px 12px 4px 12px;
-  border-radius: 6px;
-  border: 3px solid hsl(0, 79%, 52%);
-  color: #ffffff;
-}
-
-.button:hover {
-  background-color: hsl(0, 79%, 40%);
-}
-
-.button:active {
-  background-color: hsl(0, 79%, 40%);
-  transform: translateY(4px);
 }
 
 a {

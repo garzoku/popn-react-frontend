@@ -6,6 +6,7 @@ import ActivityService from "../../ActivityService";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { ref, uploadBytes, StorageReference, getDownloadURL, getStorage } from "firebase/storage";
+import { ImageBlobToUrl } from "../../util/PopnUtil";
 const { v4: uuidv4 } = require("uuid");
 type ActivityList = {
   activities: Activity[];
@@ -72,7 +73,7 @@ const EditActivity = ({ activities }: ActivityList) => {
       setImageUpload((prevImageUpload) => event.target.files[0]);
       setImageRef((prevImageRef) => ref(storage, `images/${event.target.files[0].name + uuidv4()}`));
       const img = document.getElementById(activity!.id!.toString());
-      img?.setAttribute("src", URL.createObjectURL(event.target.files[0]));
+      img?.setAttribute("src", ImageBlobToUrl(event.target.files[0]));
     } else {
       getDownloadURL(ref(storage, `images/imagepreview.png`)).then((url) => {
         const img = document.getElementById(activity!.id!.toString());

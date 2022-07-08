@@ -7,7 +7,8 @@ import { dateFormatter, timeFormatter } from "../../util/PopnUtil";
 import styles from "./ActivityListing.module.css";
 
 import { ref, getDownloadURL, getStorage } from "firebase/storage";
-
+import HoursDates from "../hours-dates/HoursDates";
+import { Form, Button, Card, Container, Image } from "react-bootstrap";
 type ActivityData = {
   activity: Activity;
 };
@@ -21,38 +22,23 @@ const ActivityListing = ({ activity }: ActivityData) => {
 
   return (
     <>
-      <Link to={`/activity/${activity.id}`}>
-        <div className="selector">
-          <figure className={styles.listing}>
-            <div>
-              <img className={styles.listingImage} src="" id={activity.id?.toString()} alt={activity.name} />
-            </div>
-            <div className={styles.listingContent}>
+      <Link to={`/activity/${activity.id}`} className={styles.linkTo}>
+        <Card className={styles.selector}>
+          <Card.Body className={styles.listing}>
+            <Image className={styles.image} src="" id={activity.id?.toString()} alt={activity.name} />
+            <Container className={styles.listingContent}>
               <div className={styles.listingTitle}>
-                <h2>{activity.name}</h2>
+                <h2 className={styles.listingTitle}>{activity.name}</h2>
               </div>
               <InfoIcon activity={activity} />
-              <div className={styles.listingMetadata}>
-                <p>
-                  <span>Hours: </span>
-                  {timeFormatter(activity.hourBeginning)}
-                  <span> Until </span>
-                  {timeFormatter(activity.hourEnding)}
-                </p>
-                <p>
-                  <span>Dates: </span>
-                  {dateFormatter(activity.dateBeginning)}
-                  <span> Thru </span>
-                  {dateFormatter(activity.dateEnding)}
-                </p>
-              </div>
+              <HoursDates activity={activity} />
               <div className={styles.location}>
                 <p>{activity.city},</p>
                 <p>{activity.state}</p>
               </div>
-            </div>
-          </figure>
-        </div>
+            </Container>
+          </Card.Body>
+        </Card>
       </Link>
     </>
   );

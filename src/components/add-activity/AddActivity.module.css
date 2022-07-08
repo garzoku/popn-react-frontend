@@ -1,28 +1,13 @@
-.addActivityBackground {
-  display: flex;
-  justify-content: center;
-}
-
 .addActivityForm {
   line-height: 1.5em;
-  display: flex;
-  flex-direction: column;
-  height: 470px;
-  margin: 64px 0;
-  border-radius: 6px;
-  padding: 24px;
-  background-color: hsl(211, 100%, 97%);
-  border: 3px solid hsl(211, 50%, 85%);
   position: relative;
-  width: 600px;
 }
 
-.formTop {
-  height: 375px;
-  display: flex;
-  justify-content: space-around;
+.gridContainer {
+  display: grid;
+  grid-template-columns: repeat(2);
+  grid-template-rows: repeat(3);
 }
-
 .formBottom {
   border-top: 1px solid hsl(211, 10%, 73%);
   line-height: 2em;
@@ -37,28 +22,13 @@
   margin-right: 12px;
 }
 
-.topLeft {
-  width: 275px;
-}
-
-.topLeft input {
-  width: 90%;
-}
-
-.topRight {
-  width: 275px;
-}
-.topRight input {
-  width: 100%;
-}
-
 .addActivityForm input {
   margin-bottom: 8px;
 }
 
-.addActivityForm textarea {
+.description textarea {
   width: 100%;
-  height: 91px;
+  height: 158px;
 }
 
 .hoursDates {
@@ -69,22 +39,18 @@ input[type="file"] {
   display: none;
 }
 .customFileUpload {
-  position: relative;
+  display: flex;
+  width: 84%;
+  justify-content: center;
   font-size: 18px;
   font-weight: 700;
   text-decoration: none;
   padding: 4px 12px 4px 12px;
   border-radius: 6px;
-  border: none;
   background-color: hsl(0, 74%, 48%);
   color: hsl(211, 100%, 97%);
-  padding-left: 2em;
 }
-.customFileUpload > span {
-  position: absolute;
-  left: 0.4em;
-  margin-top: YYYpx;
-}
+
 .customFileUpload:hover {
   background-color: hsl(0, 79%, 40%);
   cursor: pointer;
@@ -119,7 +85,7 @@ input[type="file"] {
   background-color: hsl(0, 79%, 40%);
   transform: translateY(4px);
 }
-.imagePreview {
+.imageUploader > img {
   width: 250px;
   height: 175px;
   object-fit: cover;

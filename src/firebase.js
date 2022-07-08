@@ -1,15 +1,36 @@
 // tells firebase we are using storage in this app
 import { getStorage } from "firebase/storage";
 import { initializeApp } from "firebase/app";
+import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAZmTWDGhS9Bex0bab4R-HdY2Q3vpHwAxA",
-  authDomain: "upload-file-cc6cf.firebaseapp.com",
-  projectId: "upload-file-cc6cf",
-  storageBucket: "upload-file-cc6cf.appspot.com",
-  messagingSenderId: "462839988359",
-  appId: "1:462839988359:web:96204dac20b48f87e6b822",
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_FIREBASE_APP_ID,
 };
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+export const auth = getAuth(app);
+const provider = new GoogleAuthProvider();
+// export const signInWithGoogle = () => signInWithPopup(auth, provider);
+
+export const signInWithGoogle = () => {
+  signInWithPopup(auth, provider)
+    .then((result) => {
+      const name = result.user.displayName;
+      const email = result.user.email;
+      const profilePic = result.user.photoURL;
+
+      localStorage.setItem("name", name);
+      localStorage.setItem("email", email);
+      localStorage.setItem("profilePic", profilePic);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
 export const storage = getStorage(app);

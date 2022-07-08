@@ -9,6 +9,7 @@ import EditActivity from "./components/edit-activity/EditActivity";
 
 import { Routes, Route, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
+import Signup from "./components/signup-page/Signup";
 
 function App() {
   let location = useLocation();
@@ -36,6 +37,7 @@ function App() {
             <Route path="/activity/:id" element={<ActivityPage activities={activities} />}></Route>
             <Route path="/add-activity" element={<AddActivity />}></Route>
             <Route path="/edit-activity/:id" element={<EditActivity activities={activities} />}></Route>
+            <Route path="/signup-page" element={<Signup />}></Route>
           </Routes>
         </div>
       </main>

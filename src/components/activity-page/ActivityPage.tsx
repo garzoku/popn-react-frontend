@@ -3,11 +3,13 @@ import { useParams } from "react-router-dom";
 import styles from "./ActivityPage.module.css";
 import InfoIcon from "../info-icon/InfoIcon";
 import { Activity } from "../../Activity";
-import ButtonToExternalSite from "../buttons/ButtonToExternalSite";
 import { Link } from "react-router-dom";
 import { dateFormatter, timeFormatter } from "../../util/PopnUtil";
 
 import { ref, getDownloadURL, getStorage } from "firebase/storage";
+import HoursDates from "../hours-dates/HoursDates";
+
+import { Form, Button, Card, Container, Anchor, Image } from "react-bootstrap";
 
 type ActivityList = {
   activities: Activity[];
@@ -26,61 +28,48 @@ const ActivityPage = ({ activities }: ActivityList) => {
 
   return (
     <>
-      <div className={styles.activityPage}>
-        <figure className={styles.activity}>
-          <div className={styles.gridContainer}>
-            <div className={styles.grid1}>
-              <div className={styles.image}>
-                <img className={styles.listingImage} src="" id={activity!.id?.toString()} alt={activity!.name} />
-              </div>
+      <Card className={styles.activityPage}>
+        <Card.Body className={styles.gridContainer}>
+          <div className={styles.grid1}>
+            <Image className={styles.image} src="" id={activity!.id?.toString()} alt={activity!.name} />
+          </div>
+          <div className={styles.grid2}>
+            <div className={styles.name}>
+              <h2>{activity!.name}</h2>
             </div>
-            <div className={styles.grid2}>
-              <div className={styles.name}>
-                <h2>{activity!.name}</h2>
-              </div>
-              <ul className={styles.links}>
-                <li>
-                  <ButtonToExternalSite text={"Directions"} link={`https://www.google.com/maps/dir/?api=1query=${activity!.name}+${activity!.city}+${activity!.state}`} />
-                </li>
-                <li>
-                  <ButtonToExternalSite text={"Website"} link={activity!.websiteUrl} />
-                </li>
-              </ul>
-              <div className={styles.badges}>
-                <InfoIcon activity={activity!} />
-              </div>
-              <div className={styles.activityMetadata}>
-                <p>
-                  <span>Hours: </span>
-                  {timeFormatter(activity!.hourBeginning)}
-                  <span> Until </span>
-                  {timeFormatter(activity!.hourEnding)}
-                </p>
-                <p>
-                  <span>Dates: </span>
-                  {dateFormatter(activity!.dateBeginning)}
-                  <span> Thru </span>
-                  {dateFormatter(activity!.dateEnding)}
-                </p>
-              </div>
+            <ul className={styles.links}>
+              <li>
+                <Anchor className="btn-primary" href={`https://www.google.com/maps/dir/?api=1query=${activity!.name}+${activity!.city}+${activity!.state}`}>
+                  Directions
+                </Anchor>
+              </li>
+              <li>
+                <Anchor className="btn-primary" href={activity!.websiteUrl}>
+                  Website
+                </Anchor>
+              </li>
+            </ul>
+            <div className={styles.badges}>
+              <InfoIcon activity={activity!} />
             </div>
-            <div className={styles.grid3}>
-              <div className={styles.activityButton}>
-                <Link to={`/edit-activity/${activity!.id}`} className={styles.button}>
-                  Edit
-                </Link>
-              </div>
-            </div>
-            <div className={styles.grid4}>
-              <div className={styles.activityDescription}>
-                <figcaption>
-                  <p>{activity!.description}</p>
-                </figcaption>
-              </div>
+            <HoursDates activity={activity!} />
+          </div>
+          <div className={styles.grid3}>
+            <div className={styles.activityButton}>
+              <Link to={`/edit-activity/${activity!.id}`} className="btn-primary">
+                Edit
+              </Link>
             </div>
           </div>
-        </figure>
-      </div>
+          <div className={styles.grid4}>
+            <div className={styles.activityDescription}>
+              <figcaption>
+                <p>{activity!.description}</p>
+              </figcaption>
+            </div>
+          </div>
+        </Card.Body>
+      </Card>
     </>
   );
 };

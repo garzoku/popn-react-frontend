@@ -1,17 +1,8 @@
 .activityPage {
+  max-width: 900px;
   display: flex;
   justify-content: center;
   margin-top: 64px;
-}
-
-.activity {
-  margin-right: auto;
-  margin-left: auto;
-  max-width: 900px;
-  border-radius: 6px;
-  border-right: 4px solid hsl(211, 50%, 85%);
-  border-bottom: 4px solid hsl(211, 50%, 85%);
-  background-color: hsl(211, 100%, 97%);
 }
 
 .gridContainer {
@@ -91,28 +82,9 @@
   color: hsl(211, 25%, 35%);
 }
 
-.image > img {
+.image {
   width: 450px;
   height: 270px;
   object-fit: cover;
   border-radius: 6px;
-}
-
-.button {
-  font-size: 18px;
-  font-weight: 700;
-  text-decoration: none;
-  padding: 4px 12px 4px 12px;
-  border-radius: 6px;
-  background-color: hsl(0, 74%, 48%);
-  color: #ffffff;
-}
-
-.button:hover {
-  background-color: hsl(0, 79%, 40%);
-}
-
-.button:active {
-  background-color: hsl(0, 79%, 40%);
-  transform: translateY(4px);
 }

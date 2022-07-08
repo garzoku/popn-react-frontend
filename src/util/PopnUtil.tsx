@@ -1,3 +1,7 @@
+export const ImageBlobToUrl = (blob: Blob) => {
+  return URL.createObjectURL(blob);
+};
+
 export const timeFormatter = (time: string) => {
   if (!time) {
     return `No Hours`;

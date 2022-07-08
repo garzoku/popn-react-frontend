@@ -1,0 +1,15 @@
+.listingMetadata {
+  border-top: 1px solid hsl(211, 10%, 73%);
+  margin-bottom: 14px;
+  padding-top: 8px;
+  font-size: 15px;
+  position: absolute;
+  bottom: 0;
+  text-align: left;
+  color: hsl(211, 100%, 1%);
+  line-height: 20px;
+}
+
+.listingMetadata span {
+  color: hsl(211, 25%, 35%);
+}

@@ -113,8 +113,8 @@ const AddActivity = () => {
   }, [imageRef, isImage, imageUrl]);
   return (
     <>
-      <div className="d-flex justify-content-center mt-4">
-        <Card className={AddActivityStyles.addActivityFormContainer}>
+      <div className="pt-4 d-flex justify-content-center flex-nowrap">
+        <Card>
           <Card.Body>
             <Form className="container" onSubmit={handleSubmit}>
               <div className="row">

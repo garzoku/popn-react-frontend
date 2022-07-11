@@ -26,8 +26,8 @@ const Header = () => {
           </li>
         </ul>
         <div className={HeaderStyles.signIn}>
-          <Link to="signup-page" className="btn-secondary" style={{ minHeight: "38px" }}>
-            Log In
+          <Link to="/signup" className="btn-secondary" style={{ minHeight: "38px" }}>
+            Sign Up
           </Link>
           {/*<button onClick={signInWithGoogle}>Sign in With Google</button>*/}
         </div>

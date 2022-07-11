@@ -28,7 +28,8 @@ const ActivityPage = ({ activities }: ActivityList) => {
 
   return (
     <>
-      <Card className={styles.activityPage}>
+    <div className="pt-4 d-flex justify-content-center flex-nowrap">
+      <Card>
         <Card.Body className={styles.gridContainer}>
           <div className={styles.grid1}>
             <Image className={styles.image} src="" id={activity!.id?.toString()} alt={activity!.name} />
@@ -70,6 +71,7 @@ const ActivityPage = ({ activities }: ActivityList) => {
           </div>
         </Card.Body>
       </Card>
+      </div>
     </>
   );
 };

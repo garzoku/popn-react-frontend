@@ -11,7 +11,7 @@ type ActivityList = {
 const FindActivities = ({ activities }: ActivityList) => {
   return (
     <>
-      <div className={styles.centered}>
+      <div className="pt-4 d-flex justify-content-center flex-nowrap">
         <div className={styles.findActivities}>
           <ul className={styles.listings}>
             {activities.map((activity) => (

@@ -7,6 +7,7 @@
 
 .listingContent {
   margin-left: 1em;
+  width: 100%;
 }
 
 .listingTitle h2 {
@@ -21,6 +22,7 @@
   text-decoration: none;
   color: hsl(211, 100%, 9%);
 }
+
 .linkTo:hover {
   text-decoration: underline;
   color: hsl(211, 100%, 9%);

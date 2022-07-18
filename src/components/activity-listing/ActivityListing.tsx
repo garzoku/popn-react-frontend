@@ -31,7 +31,9 @@ const ActivityListing = ({ activity }: ActivityData) => {
                 <h2 className={styles.listingTitle}>{activity.name}</h2>
               </div>
               <InfoIcon activity={activity} />
-              <HoursDates activity={activity} />
+              <div className="w-100">
+                <HoursDates activity={activity} />
+              </div>
               <div className={styles.location}>
                 <p>{activity.city},</p>
                 <p>{activity.state}</p>

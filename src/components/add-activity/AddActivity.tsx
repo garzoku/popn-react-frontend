@@ -118,83 +118,99 @@ const AddActivity = () => {
           <Card.Body>
             <Form className="container" onSubmit={handleSubmit}>
               <div className="row">
-                <div className="col">
-                  <Form.Group className={AddActivityStyles.imageUploader}>
-                    <img src="" alt="preview" id="dynamicImage" />
+                <div className="col w-50">
+                  <Form.Group className={AddActivityStyles.group}>
+                    <div className={AddActivityStyles.previewContainer}>
+                      <img src="" alt="preview" id="dynamicImage" />
+                    </div>
                     <br />
                     <label htmlFor="imageUrl" className={AddActivityStyles.customFileUpload}>
                       <span className="material-symbols-outlined">add</span>Select Image
                     </label>
                     <br />
-                    <input className={AddActivityStyles.customFileUploadInput} required type="file" name="imageUrl" id="imageUrl" onChange={onSelectFile} accept="image/png, image/gif, image/jpeg" />
+                    <input required type="file" name="imageUrl" id="imageUrl" onChange={onSelectFile} accept="image/png, image/gif, image/jpeg" />
                     <br />
                   </Form.Group>
                 </div>
-                <div className="col">
-                  <Form.Group className={AddActivityStyles.name}>
+                <div className="col w-50">
+                  <Form.Group className={AddActivityStyles.group}>
                     <label htmlFor="name">Activity Name</label>
                     <br />
-                    <input required type="text" id="name" name="name" value={name} onChange={(e) => setName(e.target.value)} />
+                    <input className="w-100" required type="text" id="name" name="name" value={name} onChange={(e) => setName(e.target.value)} />
                     <br />
                   </Form.Group>
-                  <Form.Group>
+                  <Form.Group className={AddActivityStyles.group}>
                     {" "}
                     <label htmlFor="websiteUrl">Website</label>
                     <br />
-                    <input type="text" id="websiteUrl" name="websiteUrl" value={websiteUrl} onChange={(e) => setWebsiteUrl(e.target.value)} />
+                    <input className="w-100" type="text" id="websiteUrl" name="websiteUrl" value={websiteUrl} onChange={(e) => setWebsiteUrl(e.target.value)} />
                     <br />
+                  </Form.Group>
+                  <Form.Group className={AddActivityStyles.group}>
+                    <div className="row">
+                      <div className="col">
+                        <Form.Group className={AddActivityStyles.group}>
+                          <label htmlFor="city">City</label>
+                          <br />
+                          <input className="w-100" required type="text" id="city" name="city" value={city} onChange={(e) => setCity(e.target.value)} />
+                        </Form.Group>
+                      </div>
+                      <div className="col">
+                        <Form.Group className={AddActivityStyles.group}>
+                          <label htmlFor="state">State</label>
+                          <br />
+                          <input className="w-100" required type="text" id="state" name="state" value={state} onChange={(e) => setState(e.target.value)} />
+                          <br />
+                        </Form.Group>
+                      </div>
+                    </div>
                   </Form.Group>
                 </div>
               </div>
               <div className="row">
-                <div className="col">
-                  <Form.Group>
+                <div className="col w-50">
+                  <Form.Group className={AddActivityStyles.group}>
                     <label htmlFor="description">Description</label>
                     <br />
                     <textarea required id="description" name="description" value={description} onChange={(e) => setDescription(e.target.value)}></textarea>
                     <br />
-                    <label htmlFor="state">State</label>
-                    <br />
-                    <input required type="text" id="state" name="state" value={state} onChange={(e) => setState(e.target.value)} />
-                    <br />
                   </Form.Group>
                 </div>
-                <div className="col">
-                  <Form.Group>
-                    <label htmlFor="city">City</label>
-                    <br />
-                    <input required type="text" id="city" name="city" value={city} onChange={(e) => setCity(e.target.value)} />
-                    <br />
+                <div className="col w-50">
+                  <Form.Group className={AddActivityStyles.group}>
+                    <div className="row">
+                      <div className="col w-50">
+                        <Form.Group className={AddActivityStyles.group}>
+                          <label htmlFor="hourBeginning">Open</label>
+                          <br />
+                          <input type="time" id="hourBeginning" name="hourBeginning" value={hourBeginning} onChange={(e) => setHourBeginning(e.target.value)} />
+                          <br />
+                        </Form.Group>
+                        <Form.Group className={AddActivityStyles.group}>
+                          <label htmlFor="hourEnding">Closed</label>
+                          <br />
+                          <input type="time" id="hourEnding" name="hourEnding" value={hourEnding} onChange={(e) => setHourEnding(e.target.value)} />
+                          <br />
+                        </Form.Group>
+                      </div>
+                      <div className="col w-50">
+                        <Form.Group className={AddActivityStyles.group}>
+                          <label htmlFor="dateBeginning">Begins</label>
+                          <br />
+                          <input type="date" id="dateBeginning" name="dateBeginning" value={dateBeginning} onChange={(e) => setDateBeginning(e.target.value)} />
+                          <br />
+                        </Form.Group>
+                        <Form.Group className={AddActivityStyles.group}>
+                          <label htmlFor="dateEnding">Ends</label>
+                          <br />
+                          <input type="date" id="dateEnding" name="dateEnding" value={dateEnding} onChange={(e) => setDateEnding(e.target.value)} />
+                          <br />
+                        </Form.Group>
+                      </div>
+                    </div>
                   </Form.Group>
                 </div>
               </div>
-
-              <Form.Group>
-                <div className={AddActivityStyles.hours}>
-                  <label htmlFor="hourBeginning">Open</label>
-                  <br />
-                  <input type="time" id="hourBeginning" name="hourBeginning" value={hourBeginning} onChange={(e) => setHourBeginning(e.target.value)} />
-                  <br />
-
-                  <label htmlFor="hourEnding">Closed</label>
-                  <br />
-                  <input type="time" id="hourEnding" name="hourEnding" value={hourEnding} onChange={(e) => setHourEnding(e.target.value)} />
-                  <br />
-                </div>
-
-                <div className={AddActivityStyles.dates}>
-                  <label htmlFor="dateBeginning">Begins</label>
-                  <br />
-                  <input type="date" id="dateBeginning" name="dateBeginning" value={dateBeginning} onChange={(e) => setDateBeginning(e.target.value)} />
-                  <br />
-
-                  <label htmlFor="dateEnding">Ends</label>
-                  <br />
-                  <input type="date" id="dateEnding" name="dateEnding" value={dateEnding} onChange={(e) => setDateEnding(e.target.value)} />
-                  <br />
-                </div>
-              </Form.Group>
-              <Form.Group></Form.Group>
 
               <div className={AddActivityStyles.formBottom}>
                 <legend>Choose Info Badges:</legend>
@@ -234,7 +250,7 @@ const AddActivity = () => {
                   </li>
                 </ul>
               </div>
-              <input className={AddActivityStyles.button} type="submit" readOnly value="Submit" />
+              <input className="btn-primary justify-content-end" type="submit" readOnly value="Submit" />
             </Form>
           </Card.Body>
         </Card>

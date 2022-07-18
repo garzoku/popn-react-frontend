@@ -33,7 +33,7 @@ export default function UpdateProfile() {
     }
 
     Promise.all(promises).then(() => {
-        alert('Updated Successfully!')
+        setMessage('Updated Successfully!')
         navigate('/')
     }).catch(() => {
         setError('Failed to update account')

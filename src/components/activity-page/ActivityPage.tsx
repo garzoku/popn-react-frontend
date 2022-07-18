@@ -28,49 +28,49 @@ const ActivityPage = ({ activities }: ActivityList) => {
 
   return (
     <>
-    <div className="pt-4 d-flex justify-content-center flex-nowrap">
-      <Card>
-        <Card.Body className={styles.gridContainer}>
-          <div className={styles.grid1}>
-            <Image className={styles.image} src="" id={activity!.id?.toString()} alt={activity!.name} />
-          </div>
-          <div className={styles.grid2}>
-            <div className={styles.name}>
-              <h2>{activity!.name}</h2>
+      <div className="pt-4 d-flex justify-content-center flex-nowrap">
+        <Card>
+          <Card.Body className={styles.gridContainer}>
+            <div className={styles.grid1}>
+              <Image className={styles.image} src="" id={activity!.id?.toString()} alt={activity!.name} />
             </div>
-            <ul className={styles.links}>
-              <li>
-                <Anchor className="btn-primary" href={`https://www.google.com/maps/dir/?api=1query=${activity!.name}+${activity!.city}+${activity!.state}`}>
-                  Directions
-                </Anchor>
-              </li>
-              <li>
-                <Anchor className="btn-primary" href={activity!.websiteUrl}>
-                  Website
-                </Anchor>
-              </li>
-            </ul>
-            <div className={styles.badges}>
-              <InfoIcon activity={activity!} />
+            <div className={styles.grid2}>
+              <div className={styles.name}>
+                <h2>{activity!.name}</h2>
+              </div>
+              <ul className={styles.links}>
+                <li>
+                  <Anchor className="btn-primary" href={`https://www.google.com/maps/dir/?api=1query=${activity!.name}+${activity!.city}+${activity!.state}`}>
+                    Directions
+                  </Anchor>
+                </li>
+                <li>
+                  <Anchor className="btn-primary" href={activity!.websiteUrl}>
+                    Website
+                  </Anchor>
+                </li>
+              </ul>
+              <div className={styles.badges}>
+                <InfoIcon activity={activity!} />
+              </div>
+              <HoursDates activity={activity!} />
             </div>
-            <HoursDates activity={activity!} />
-          </div>
-          <div className={styles.grid3}>
-            <div className={styles.activityButton}>
-              <Link to={`/edit-activity/${activity!.id}`} className="btn-primary">
-                Edit
-              </Link>
+            <div className={styles.grid3}>
+              <div className={styles.activityButton}>
+                <Link to={`/edit-activity/${activity!.id}`} className="btn-primary">
+                  Edit
+                </Link>
+              </div>
             </div>
-          </div>
-          <div className={styles.grid4}>
-            <div className={styles.activityDescription}>
-              <figcaption>
-                <p>{activity!.description}</p>
-              </figcaption>
+            <div className={styles.grid4}>
+              <div className={styles.activityDescription}>
+                <figcaption>
+                  <p>{activity!.description}</p>
+                </figcaption>
+              </div>
             </div>
-          </div>
-        </Card.Body>
-      </Card>
+          </Card.Body>
+        </Card>
       </div>
     </>
   );

@@ -28,9 +28,11 @@ header {
 .darkestBlueBG {
   background-color: hsl(211, 100%, 9%);
 }
+
 .darkBlue {
   color: hsl(211, 100%, 13%);
 }
+
 .darkBlueBG {
   background-color: hsl(211, 100%, 13%);
 }
@@ -38,6 +40,7 @@ header {
 .lightestWhiteBG {
   background-color: hsl(211, 100%, 97%);
 }
+
 .lightestWhite {
   color: hsl(211, 100%, 97%);
 }
@@ -47,6 +50,7 @@ header {
 }
 
 .btn-primary {
+  text-align: center;
   color: #fff;
   background-color: hsl(0, 79%, 52%);
   border-color: hsl(0, 79%, 50%);
@@ -57,29 +61,43 @@ header {
   padding: 6px 12px 6px 12px;
   white-space: nowrap;
 }
+
 .btn-primary:hover {
   background-color: hsl(0, 79%, 40%);
   border-color: hsl(0, 79%, 38%);
 }
 
-.btn-check:focus + .btn-primary, .btn-primary:focus {
+.btn-check:focus+.btn-primary,
+.btn-primary:focus {
   color: #fff;
   background-color: hsl(0, 79%, 52%);
   border-color: hsl(0, 79%, 50%);
   box-shadow: 0 0 0 0.25rem hsl(211, 65%, 65%);
 }
-.btn-check:checked + .btn-primary, .btn-check:active + .btn-primary, .btn-primary:active, .btn-primary.active, .show > .btn-primary.dropdown-toggle {
+
+.btn-check:checked+.btn-primary,
+.btn-check:active+.btn-primary,
+.btn-primary:active,
+.btn-primary.active,
+.show>.btn-primary.dropdown-toggle {
   color: #fff;
   background-color: hsl(0, 79%, 52%);
   border-color: hsl(0, 79%, 50%);
 }
+
 /* When buton is clicked*/
-.btn-check:checked + .btn-primary:focus, .btn-check:active + .btn-primary:focus, .btn-primary:active:focus, .btn-primary.active:focus, .show > .btn-primary.dropdown-toggle:focus {
+.btn-check:checked+.btn-primary:focus,
+.btn-check:active+.btn-primary:focus,
+.btn-primary:active:focus,
+.btn-primary.active:focus,
+.show>.btn-primary.dropdown-toggle:focus {
   background-color: hsl(0, 79%, 40%);
   border-color: hsl(0, 79%, 38%);
   box-shadow: 0 0 0 0.25rem hsl(211, 65%, 65%);
 }
-.btn-primary:disabled, .btn-primary.disabled {
+
+.btn-primary:disabled,
+.btn-primary.disabled {
   color: #fff;
   background-color: hsl(0, 79%, 40%);
   border-color: hsl(0, 79%, 38%);
@@ -89,26 +107,42 @@ header {
   background-color: hsl(0, 79%, 52%);
   border-color: hsl(0, 79%, 50%);
 }
+
 .btn-outline-primary:hover {
   color: #fff;
   background-color: hsl(0, 79%, 40%);
   border-color: hsl(0, 79%, 38%);
 }
-.btn-check:focus + .btn-outline-primary, .btn-outline-primary:focus {
+
+.btn-check:focus+.btn-outline-primary,
+.btn-outline-primary:focus {
   box-shadow: 0 0 0 0.25rem hsl(211, 65%, 65%);
 }
-.btn-check:checked + .btn-outline-primary, .btn-check:active + .btn-outline-primary, .btn-outline-primary:active, .btn-outline-primary.active, .btn-outline-primary.dropdown-toggle.show {
+
+.btn-check:checked+.btn-outline-primary,
+.btn-check:active+.btn-outline-primary,
+.btn-outline-primary:active,
+.btn-outline-primary.active,
+.btn-outline-primary.dropdown-toggle.show {
   color: #fff;
   background-color: pink;
   border-color: pink;
 }
-.btn-check:checked + .btn-outline-primary:focus, .btn-check:active + .btn-outline-primary:focus, .btn-outline-primary:active:focus, .btn-outline-primary.active:focus, .btn-outline-primary.dropdown-toggle.show:focus {
+
+.btn-check:checked+.btn-outline-primary:focus,
+.btn-check:active+.btn-outline-primary:focus,
+.btn-outline-primary:active:focus,
+.btn-outline-primary.active:focus,
+.btn-outline-primary.dropdown-toggle.show:focus {
   box-shadow: 0 0 0 0.25rem hsl(211, 65%, 65%);
 }
-.btn-outline-primary:disabled, .btn-outline-primary.disabled {
+
+.btn-outline-primary:disabled,
+.btn-outline-primary.disabled {
   color: pink;
   background-color: transparent;
 }
+
 .btn-secondary {
   text-align: center;
   font-weight: 600;
@@ -132,29 +166,32 @@ header {
   transform: translateY(4px);
 }
 
-.btn-check:focus + .btn-secondary,
+.btn-check:focus+.btn-secondary,
 .btn-secondary:focus {
   color: #fff;
   background-color: hsl(0, 79%, 40%);
   border-color: hsl(0, 79%, 37%);
   box-shadow: 0 0 0 0.25rem hsl(211, 65%, 65%);
 }
-.btn-check:checked + .btn-secondary,
-.btn-check:active + .btn-secondary,
+
+.btn-check:checked+.btn-secondary,
+.btn-check:active+.btn-secondary,
 .btn-secondary:active,
 .btn-secondary.active,
-.show > .btn-secondary.dropdown-toggle {
+.show>.btn-secondary.dropdown-toggle {
   color: #fff;
   background-color: hsl(0, 79%, 40%);
   border-color: hsl(0, 79%, 37%);
 }
-.btn-check:checked + .btn-secondary:focus,
-.btn-check:active + .btn-secondary:focus,
+
+.btn-check:checked+.btn-secondary:focus,
+.btn-check:active+.btn-secondary:focus,
 .btn-secondary:active:focus,
 .btn-secondary.active:focus,
-.show > .btn-secondary.dropdown-toggle:focus {
+.show>.btn-secondary.dropdown-toggle:focus {
   box-shadow: 0 0 0 0.25rem hsl(211, 65%, 65%);
 }
+
 .btn-secondary:disabled,
 .btn-secondary.disabled {
   color: #fff;
@@ -170,23 +207,38 @@ header {
   color: #6c757d;
   border-color: #6c757d;
 }
+
 .btn-outline-secondary:hover {
   color: #fff;
   background-color: #6c757d;
   border-color: #6c757d;
 }
-.btn-check:focus + .btn-outline-secondary, .btn-outline-secondary:focus {
+
+.btn-check:focus+.btn-outline-secondary,
+.btn-outline-secondary:focus {
   box-shadow: 0 0 0 0.25rem rgba(108, 117, 125, 0.5);
 }
-.btn-check:checked + .btn-outline-secondary, .btn-check:active + .btn-outline-secondary, .btn-outline-secondary:active, .btn-outline-secondary.active, .btn-outline-secondary.dropdown-toggle.show {
+
+.btn-check:checked+.btn-outline-secondary,
+.btn-check:active+.btn-outline-secondary,
+.btn-outline-secondary:active,
+.btn-outline-secondary.active,
+.btn-outline-secondary.dropdown-toggle.show {
   color: #fff;
   background-color: #6c757d;
   border-color: #6c757d;
 }
-.btn-check:checked + .btn-outline-secondary:focus, .btn-check:active + .btn-outline-secondary:focus, .btn-outline-secondary:active:focus, .btn-outline-secondary.active:focus, .btn-outline-secondary.dropdown-toggle.show:focus {
+
+.btn-check:checked+.btn-outline-secondary:focus,
+.btn-check:active+.btn-outline-secondary:focus,
+.btn-outline-secondary:active:focus,
+.btn-outline-secondary.active:focus,
+.btn-outline-secondary.dropdown-toggle.show:focus {
   box-shadow: 0 0 0 0.25rem rgba(108, 117, 125, 0.5);
 }
-.btn-outline-secondary:disabled, .btn-outline-secondary.disabled {
+
+.btn-outline-secondary:disabled,
+.btn-outline-secondary.disabled {
   color: #6c757d;
   background-color: transparent;
 }
@@ -195,6 +247,7 @@ a {
   color: #0d6efd;
   text-decoration: underline;
 }
+
 a:hover {
   color: #0a58ca;
 }
